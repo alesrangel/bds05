@@ -1,4 +1,4 @@
-package com.devsuperior.movieflix.resources;
+package com.devsuperior.movieflix.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import com.devsuperior.movieflix.services.UserService;
 
 @RestController
 @RequestMapping(value = "/users")
-public class UserResource {
+public class UserController {
 	
 	@Autowired
 	private UserService service;
@@ -23,4 +23,9 @@ public class UserResource {
 		return ResponseEntity.ok().body(dto);
 	}
 
+	@GetMapping(value = "/profile")
+	public ResponseEntity<UserDTO> findProfile() {
+		UserDTO dto = service.findProfile();
+		return ResponseEntity.ok().body(dto);
+	}
 }
